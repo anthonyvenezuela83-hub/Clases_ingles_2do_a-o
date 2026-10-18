@@ -1,0 +1,758 @@
+<!DOCTYPE html>
+<html lang="es" class="scroll-smooth">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>English Portal - 2nd Year | Present Simple | Prof. Anthony Altuve</title>
+    <!-- Tailwind CSS -->
+    <script src="https://cdn.tailwindcss.com"></script>
+    <!-- FontAwesome Icons -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <!-- Google Fonts -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Outfit:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
+    <script>
+        tailwind.config = {
+            theme: {
+                extend: {
+                    colors: {
+                        brand: {
+                            50: '#eef2ff',
+                            100: '#e0e7ff',
+                            500: '#6366f1',
+                            600: '#4f46e5',
+                            700: '#4338ca',
+                            900: '#312e81',
+                        },
+                        accent: {
+                            500: '#f59e0b',
+                            600: '#d97706',
+                        }
+                    },
+                    fontFamily: {
+                        sans: ['Outfit', 'sans-serif'],
+                    }
+                }
+            }
+        }
+    </script>
+    <style>
+        .gradient-banner {
+            background: linear-gradient(135deg, #4f46e5 0%, #7c3aed 50%, #db2777 100%);
+        }
+        .tab-btn.active {
+            border-bottom-color: #4f46e5;
+            color: #4f46e5;
+            font-weight: 700;
+        }
+        .rule-card {
+            transition: all 0.3s ease;
+        }
+        .rule-card:hover {
+            transform: translateY(-4px);
+        }
+        /* Custom scrollbar */
+        ::-webkit-scrollbar {
+            width: 8px;
+        }
+        ::-webkit-scrollbar-track {
+            background: #f1f5f9;
+        }
+        ::-webkit-scrollbar-thumb {
+            background: #cbd5e1;
+            border-radius: 4px;
+        }
+        ::-webkit-scrollbar-thumb:hover {
+            background: #94a3b8;
+        }
+    </style>
+</head>
+<body class="bg-slate-50 text-slate-800 font-sans min-h-screen flex flex-col justify-between selection:bg-indigo-500 selection:text-white">
+
+    <!-- HEADER / BRANDING -->
+    <header class="gradient-banner text-white shadow-xl relative overflow-hidden">
+        <div class="absolute -right-10 -bottom-10 opacity-10 text-9xl pointer-events-none">
+            <i class="fa-solid fa-book-open-reader"></i>
+        </div>
+        <div class="max-w-7xl mx-mx auto px-4 py-8 sm:px-6 lg:px-8 relative z-10">
+            <div class="flex flex-col md:flex-row justify-between items-center gap-6">
+                <div class="text-center md:text-left">
+                    <div class="inline-flex items-center gap-2 bg-white/20 backdrop-blur-md px-3 py-1 rounded-full text-xs font-semibold uppercase tracking-wider mb-2 border border-white/30">
+                        <i class="fa-solid fa-graduation-cap"></i> Inglés - 2do Año (Segundo Año)
+                    </div>
+                    <h1 class="text-3xl sm:text-5xl font-extrabold tracking-tight">
+                        Present Simple Tense
+                    </h1>
+                    <p class="mt-2 text-indigo-100 text-base sm:text-lg max-w-2xl font-light">
+                        Aprende la estructura, las reglas clave de la 3ra persona y practica con juegos interactivos.
+                    </p>
+                </div>
+                <div class="bg-white/10 backdrop-blur-md p-4 rounded-2xl border border-white/20 flex items-center gap-4 shadow-lg min-w-[280px]">
+                    <div class="w-14 h-14 rounded-full bg-amber-400 text-slate-900 flex items-center justify-center font-bold text-2xl shadow-inner border-2 border-white">
+                        PA
+                    </div>
+                    <div>
+                        <p class="text-xs text-indigo-200 uppercase font-bold tracking-wider">Docente de Inglés</p>
+                        <p class="text-lg font-bold leading-tight">Prof. Anthony Altuve</p>
+                        <p class="text-xs text-indigo-100 mt-1 flex items-center gap-1">
+                            <i class="fa-solid fa-school text-amber-300"></i> Portal Educativo 2026
+                        </p>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- NAVIGATION TABS -->
+        <div class="bg-white/10 backdrop-blur-md border-t border-white/10 mt-6">
+            <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+                <nav class="flex space-x-2 sm:space-x-8 overflow-x-auto py-3 no-scrollbar" id="nav-tabs">
+                    <button onclick="switchTab('grammar')" id="tab-grammar" class="tab-btn text-white/90 hover:text-white px-4 py-2 text-sm sm:text-base font-medium rounded-lg flex items-center gap-2 transition whitespace-nowrap bg-white/10">
+                        <i class="fa-solid fa-book text-amber-300"></i> Reglas Gramaticales
+                    </button>
+                    <button onclick="switchTab('exercises')" id="tab-exercises" class="tab-btn text-white/90 hover:text-white px-4 py-2 text-sm sm:text-base font-medium rounded-lg flex items-center gap-2 transition whitespace-nowrap">
+                        <i class="fa-solid fa-pen-to-square text-amber-300"></i> Ejercicios
+                    </button>
+                    <button onclick="switchTab('game')" id="tab-game" class="tab-btn text-white/90 hover:text-white px-4 py-2 text-sm sm:text-base font-medium rounded-lg flex items-center gap-2 transition whitespace-nowrap">
+                        <i class="fa-solid fa-gamepad text-amber-300"></i> Desafío 3ra Persona
+                    </button>
+                    <button onclick="switchTab('videos')" id="tab-videos" class="tab-btn text-white/90 hover:text-white px-4 py-2 text-sm sm:text-base font-medium rounded-lg flex items-center gap-2 transition whitespace-nowrap">
+                        <i class="fa-solid fa-circle-play text-amber-300"></i> Lecciones en Video
+                    </button>
+                </nav>
+            </div>
+        </div>
+    </header>
+
+    <!-- MAIN CONTENT CONTAINER -->
+    <main class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-8 flex-grow w-full">
+
+        <!-- ================= SECTION 1: GRAMMAR ================= -->
+        <section id="sec-grammar" class="tab-content space-y-8">
+            
+            <!-- Intro Banner -->
+            <div class="bg-amber-50 border-l-4 border-amber-500 p-5 rounded-r-xl shadow-sm flex flex-col md:flex-row justify-between items-start md:items-center gap-4">
+                <div>
+                    <h3 class="text-lg font-bold text-amber-900 flex items-center gap-2">
+                        <i class="fa-solid fa-lightbulb text-amber-500"></i> ¿Cuándo usamos el Presente Simple?
+                    </h3>
+                    <p class="text-amber-800 text-sm mt-1">
+                        Se usa para hablar de **rutinas**, **hábitos**, **hechos generales** o **verdades universales** (ej. <em>I study English every day / She lives in Caracas</em>).
+                    </p>
+                </div>
+                <span class="bg-amber-200 text-amber-900 text-xs font-bold px-3 py-1 rounded-full uppercase tracking-wider">2do Año Fundamental</span>
+            </div>
+
+            <!-- CRITICAL HIGHLIGHT: 3RD PERSON RULES -->
+            <div class="bg-gradient-to-r from-indigo-900 via-indigo-800 to-purple-900 rounded-3xl p-6 sm:p-8 text-white shadow-2xl relative overflow-hidden border-2 border-amber-400">
+                <div class="absolute -right-8 -top-8 text-white/5 text-9xl font-black select-none pointer-events-none">HE SHE IT</div>
+                
+                <div class="flex flex-col lg:flex-row gap-6 items-start justify-between relative z-10 mb-6">
+                    <div>
+                        <span class="bg-amber-400 text-slate-900 text-xs font-extrabold uppercase px-3 py-1 rounded-full tracking-wider">¡Súper Importante!</span>
+                        <h2 class="text-2xl sm:text-4xl font-extrabold mt-2 text-white">
+                            Reglas de la 3ra Persona Singular
+                        </h2>
+                        <p class="text-indigo-200 text-sm sm:text-base mt-1">
+                            Solo aplica en oraciones **AFIRMATIVAS** con los pronombres: <strong class="text-amber-300">HE, SHE, IT</strong> (o sustantivos singulares como <em>My mother, John, The dog</em>).
+                        </p>
+                    </div>
+                </div>
+
+                <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-4 relative z-10">
+                    <!-- Rule 1 -->
+                    <div class="bg-white/10 backdrop-blur-md p-5 rounded-2xl border border-white/20 hover:bg-white/20 transition">
+                        <div class="w-10 h-10 rounded-xl bg-amber-400 text-slate-900 font-bold flex items-center justify-center text-lg mb-3">1</div>
+                        <h3 class="font-bold text-lg text-amber-300">Regla General (+S)</h3>
+                        <p class="text-xs text-indigo-100 mt-1">A la mayoría de los verbos solo se le añade <strong>-s</strong>.</p>
+                        <div class="mt-4 bg-black/30 p-3 rounded-xl space-y-2 text-sm font-mono">
+                            <div class="flex justify-between items-center">
+                                <span>work &rarr; <strong class="text-amber-300">works</strong></span>
+                                <button onclick="speak('works')" class="text-indigo-300 hover:text-white"><i class="fa-solid fa-volume-high"></i></button>
+                            </div>
+                            <div class="flex justify-between items-center">
+                                <span>play &rarr; <strong class="text-amber-300">plays</strong></span>
+                                <button onclick="speak('plays')" class="text-indigo-300 hover:text-white"><i class="fa-solid fa-volume-high"></i></button>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Rule 2 -->
+                    <div class="bg-white/10 backdrop-blur-md p-5 rounded-2xl border border-white/20 hover:bg-white/20 transition">
+                        <div class="w-10 h-10 rounded-xl bg-amber-400 text-slate-900 font-bold flex items-center justify-center text-lg mb-3">2</div>
+                        <h3 class="font-bold text-lg text-amber-300">Terminados en +ES</h3>
+                        <p class="text-xs text-indigo-100 mt-1">Si terminan en: <strong>-ch, -sh, -s, -x, -z, -o</strong> se agrega <strong>-es</strong>.</p>
+                        <div class="mt-4 bg-black/30 p-3 rounded-xl space-y-2 text-sm font-mono">
+                            <div class="flex justify-between items-center">
+                                <span>watch &rarr; <strong class="text-amber-300">watches</strong></span>
+                                <button onclick="speak('watches')" class="text-indigo-300 hover:text-white"><i class="fa-solid fa-volume-high"></i></button>
+                            </div>
+                            <div class="flex justify-between items-center">
+                                <span>go &rarr; <strong class="text-amber-300">goes</strong></span>
+                                <button onclick="speak('goes')" class="text-indigo-300 hover:text-white"><i class="fa-solid fa-volume-high"></i></button>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Rule 3 -->
+                    <div class="bg-white/10 backdrop-blur-md p-5 rounded-2xl border border-white/20 hover:bg-white/20 transition">
+                        <div class="w-10 h-10 rounded-xl bg-amber-400 text-slate-900 font-bold flex items-center justify-center text-lg mb-3">3</div>
+                        <h3 class="font-bold text-lg text-amber-300">Consonante + Y (+IES)</h3>
+                        <p class="text-xs text-indigo-100 mt-1">Cambia la <strong>y</strong> por <strong>i</strong> y agrega <strong>-es</strong>.</p>
+                        <div class="mt-4 bg-black/30 p-3 rounded-xl space-y-2 text-sm font-mono">
+                            <div class="flex justify-between items-center">
+                                <span>study &rarr; <strong class="text-amber-300">studies</strong></span>
+                                <button onclick="speak('studies')" class="text-indigo-300 hover:text-white"><i class="fa-solid fa-volume-high"></i></button>
+                            </div>
+                            <div class="flex justify-between items-center">
+                                <span>fly &rarr; <strong class="text-amber-300">flies</strong></span>
+                                <button onclick="speak('flies')" class="text-indigo-300 hover:text-white"><i class="fa-solid fa-volume-high"></i></button>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Rule 4 Irregular -->
+                    <div class="bg-white/10 backdrop-blur-md p-5 rounded-2xl border border-white/20 hover:bg-white/20 transition">
+                        <div class="w-10 h-10 rounded-xl bg-amber-400 text-slate-900 font-bold flex items-center justify-center text-lg mb-3">4</div>
+                        <h3 class="font-bold text-lg text-amber-300">Irregular (HAVE)</h3>
+                        <p class="text-xs text-indigo-100 mt-1">El verbo <strong>have</strong> cambia totalmente a <strong>has</strong>.</p>
+                        <div class="mt-4 bg-black/30 p-3 rounded-xl space-y-2 text-sm font-mono">
+                            <div class="flex justify-between items-center">
+                                <span>have &rarr; <strong class="text-amber-300">has</strong></span>
+                                <button onclick="speak('has')" class="text-indigo-300 hover:text-white"><i class="fa-solid fa-volume-high"></i></button>
+                            </div>
+                            <p class="text-[10px] text-amber-200 mt-1 italic">*No se dice "haves"</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- SENTENCE STRUCTURES (AFIRMATIVA, NEGATIVA, INTERROGATIVA) -->
+            <div>
+                <h2 class="text-2xl font-bold text-slate-800 mb-6 flex items-center gap-3">
+                    <i class="fa-solid fa-sitemap text-indigo-600"></i> Estructuras Gramaticales
+                </h2>
+
+                <div class="grid grid-cols-1 md:grid-cols-3 gap-6">
+                    <!-- Affirmative -->
+                    <div class="bg-white rounded-2xl p-6 shadow-md border border-slate-200 flex flex-col justify-between">
+                        <div>
+                            <div class="flex items-center justify-between mb-4">
+                                <span class="bg-emerald-100 text-emerald-800 font-bold px-3 py-1 rounded-lg text-xs uppercase">Afirmativo</span>
+                                <i class="fa-solid fa-circle-check text-emerald-500 text-xl"></i>
+                            </div>
+                            <p class="text-xs font-semibold text-slate-500 uppercase tracking-wider mb-2">Estructura:</p>
+                            <div class="bg-slate-100 p-3 rounded-xl text-xs font-mono font-bold text-slate-700 mb-4 border border-slate-200">
+                                Sujeto + Verbo (+s/es en 3ra pers.) + Complemento
+                            </div>
+                            <ul class="space-y-3 text-sm text-slate-600">
+                                <li class="bg-emerald-50/50 p-2 rounded-lg border border-emerald-100 flex items-center justify-between">
+                                    <span>I <strong>play</strong> soccer on Saturdays.</span>
+                                    <button onclick="speak('I play soccer on Saturdays')" class="text-emerald-600 hover:text-emerald-800"><i class="fa-solid fa-volume-high"></i></button>
+                                </li>
+                                <li class="bg-emerald-50/50 p-2 rounded-lg border border-emerald-100 flex items-center justify-between">
+                                    <span>She <strong>plays</strong> soccer on Saturdays.</span>
+                                    <button onclick="speak('She plays soccer on Saturdays')" class="text-emerald-600 hover:text-emerald-800"><i class="fa-solid fa-volume-high"></i></button>
+                                </li>
+                            </ul>
+                        </div>
+                    </div>
+
+                    <!-- Negative -->
+                    <div class="bg-white rounded-2xl p-6 shadow-md border border-slate-200 flex flex-col justify-between">
+                        <div>
+                            <div class="flex items-center justify-between mb-4">
+                                <span class="bg-rose-100 text-rose-800 font-bold px-3 py-1 rounded-lg text-xs uppercase">Negativo</span>
+                                <i class="fa-solid fa-circle-xmark text-rose-500 text-xl"></i>
+                            </div>
+                            <p class="text-xs font-semibold text-slate-500 uppercase tracking-wider mb-2">Estructura:</p>
+                            <div class="bg-slate-100 p-3 rounded-xl text-xs font-mono font-bold text-slate-700 mb-4 border border-slate-200">
+                                Sujeto + DON'T / DOESN'T + Verbo Base + Comp.
+                            </div>
+                            <ul class="space-y-3 text-sm text-slate-600">
+                                <li class="bg-rose-50/50 p-2 rounded-lg border border-rose-100 flex items-center justify-between">
+                                    <span>I <strong>don't like</strong> coffee.</span>
+                                    <button onclick="speak('I don\'t like coffee')" class="text-rose-600 hover:text-rose-800"><i class="fa-solid fa-volume-high"></i></button>
+                                </li>
+                                <li class="bg-rose-50/50 p-2 rounded-lg border border-rose-100 flex items-center justify-between">
+                                    <span>He <strong>doesn't like</strong> coffee.</span>
+                                    <button onclick="speak('He doesn\'t like coffee')" class="text-rose-600 hover:text-rose-800"><i class="fa-solid fa-volume-high"></i></button>
+                                </li>
+                            </ul>
+                        </div>
+                        <p class="text-[11px] text-slate-500 mt-4 italic bg-slate-50 p-2 rounded">
+                            *Nota: Con <strong>doesn't</strong>, el verbo vuelve a su forma base (sin 's').
+                        </p>
+                    </div>
+
+                    <!-- Interrogative -->
+                    <div class="bg-white rounded-2xl p-6 shadow-md border border-slate-200 flex flex-col justify-between">
+                        <div>
+                            <div class="flex items-center justify-between mb-4">
+                                <span class="bg-indigo-100 text-indigo-800 font-bold px-3 py-1 rounded-lg text-xs uppercase">Interrogativo</span>
+                                <i class="fa-solid fa-circle-question text-indigo-500 text-xl"></i>
+                            </div>
+                            <p class="text-xs font-semibold text-slate-500 uppercase tracking-wider mb-2">Estructura:</p>
+                            <div class="bg-slate-100 p-3 rounded-xl text-xs font-mono font-bold text-slate-700 mb-4 border border-slate-200">
+                                DO / DOES + Sujeto + Verbo Base + Comp. + ?
+                            </div>
+                            <ul class="space-y-3 text-sm text-slate-600">
+                                <li class="bg-indigo-50/50 p-2 rounded-lg border border-indigo-100 flex items-center justify-between">
+                                    <span><strong>Do</strong> you live in Venezuela?</span>
+                                    <button onclick="speak('Do you live in Venezuela?')" class="text-indigo-600 hover:text-indigo-800"><i class="fa-solid fa-volume-high"></i></button>
+                                </li>
+                                <li class="bg-indigo-50/50 p-2 rounded-lg border border-indigo-100 flex items-center justify-between">
+                                    <span><strong>Does</strong> he study English?</span>
+                                    <button onclick="speak('Does he study English?')" class="text-indigo-600 hover:text-indigo-800"><i class="fa-solid fa-volume-high"></i></button>
+                                </li>
+                            </ul>
+                        </div>
+                        <p class="text-[11px] text-slate-500 mt-4 italic bg-slate-50 p-2 rounded">
+                            *Usa <strong>DO</strong> para I, You, We, They. Usa <strong>DOES</strong> para He, She, It.
+                        </p>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- ================= SECTION 2: EXERCISES ================= -->
+        <section id="sec-exercises" class="tab-content hidden space-y-8">
+            <div class="bg-white rounded-3xl p-6 sm:p-8 shadow-xl border border-slate-200">
+                <div class="flex flex-col sm:flex-row justify-between items-start sm:items-center gap-4 mb-8 border-b border-slate-100 pb-6">
+                    <div>
+                        <h2 class="text-2xl font-bold text-slate-800 flex items-center gap-3">
+                            <i class="fa-solid fa-list-check text-indigo-600"></i> Práctica Interactiva de Presente Simple
+                        </h2>
+                        <p class="text-slate-500 text-sm mt-1">Demuestra lo aprendido sobre la 3ra persona y los auxiliares Do/Does.</p>
+                    </div>
+                    <div id="quiz-score-container" class="bg-indigo-50 border border-indigo-100 px-4 py-2 rounded-2xl flex items-center gap-3">
+                        <span class="text-xs font-bold uppercase text-indigo-600">Puntaje:</span>
+                        <span id="quiz-score" class="text-2xl font-black text-indigo-700">0 / 5</span>
+                    </div>
+                </div>
+
+                <form id="quiz-form" onsubmit="event.preventDefault(); checkQuiz();" class="space-y-8">
+                    
+                    <!-- Q1 -->
+                    <div class="p-5 rounded-2xl bg-slate-50 border border-slate-200 hover:border-indigo-200 transition" id="q1-box">
+                        <label class="block font-bold text-slate-800 mb-2">
+                            1. She ________ (watch) TV every evening. <span class="text-xs font-normal text-slate-500">(Aplica regla 3ra persona)</span>
+                        </label>
+                        <div class="grid grid-cols-1 sm:grid-cols-3 gap-3">
+                            <label class="flex items-center gap-3 p-3 bg-white rounded-xl border border-slate-200 cursor-pointer hover:bg-indigo-50 transition">
+                                <input type="radio" name="q1" value="watch" class="text-indigo-600">
+                                <span>watch</span>
+                            </label>
+                            <label class="flex items-center gap-3 p-3 bg-white rounded-xl border border-slate-200 cursor-pointer hover:bg-indigo-50 transition">
+                                <input type="radio" name="q1" value="watches" class="text-indigo-600">
+                                <span>watches</span>
+                            </label>
+                            <label class="flex items-center gap-3 p-3 bg-white rounded-xl border border-slate-200 cursor-pointer hover:bg-indigo-50 transition">
+                                <input type="radio" name="q1" value="watchs" class="text-indigo-600">
+                                <span>watchs</span>
+                            </label>
+                        </div>
+                        <p id="q1-feedback" class="text-sm font-semibold mt-2 hidden"></p>
+                    </div>
+
+                    <!-- Q2 -->
+                    <div class="p-5 rounded-2xl bg-slate-50 border border-slate-200 hover:border-indigo-200 transition" id="q2-box">
+                        <label class="block font-bold text-slate-800 mb-2">
+                            2. My brother ________ (not / play) video games on weekdays.
+                        </label>
+                        <div class="grid grid-cols-1 sm:grid-cols-3 gap-3">
+                            <label class="flex items-center gap-3 p-3 bg-white rounded-xl border border-slate-200 cursor-pointer hover:bg-indigo-50 transition">
+                                <input type="radio" name="q2" value="don't play" class="text-indigo-600">
+                                <span>don't play</span>
+                            </label>
+                            <label class="flex items-center gap-3 p-3 bg-white rounded-xl border border-slate-200 cursor-pointer hover:bg-indigo-50 transition">
+                                <input type="radio" name="q2" value="doesn't plays" class="text-indigo-600">
+                                <span>doesn't plays</span>
+                            </label>
+                            <label class="flex items-center gap-3 p-3 bg-white rounded-xl border border-slate-200 cursor-pointer hover:bg-indigo-50 transition">
+                                <input type="radio" name="q2" value="doesn't play" class="text-indigo-600">
+                                <span>doesn't play</span>
+                            </label>
+                        </div>
+                        <p id="q2-feedback" class="text-sm font-semibold mt-2 hidden"></p>
+                    </div>
+
+                    <!-- Q3 -->
+                    <div class="p-5 rounded-2xl bg-slate-50 border border-slate-200 hover:border-indigo-200 transition" id="q3-box">
+                        <label class="block font-bold text-slate-800 mb-2">
+                            3. ________ they live in Caracas?
+                        </label>
+                        <div class="grid grid-cols-1 sm:grid-cols-3 gap-3">
+                            <label class="flex items-center gap-3 p-3 bg-white rounded-xl border border-slate-200 cursor-pointer hover:bg-indigo-50 transition">
+                                <input type="radio" name="q3" value="Do" class="text-indigo-600">
+                                <span>Do</span>
+                            </label>
+                            <label class="flex items-center gap-3 p-3 bg-white rounded-xl border border-slate-200 cursor-pointer hover:bg-indigo-50 transition">
+                                <input type="radio" name="q3" value="Does" class="text-indigo-600">
+                                <span>Does</span>
+                            </label>
+                            <label class="flex items-center gap-3 p-3 bg-white rounded-xl border border-slate-200 cursor-pointer hover:bg-indigo-50 transition">
+                                <input type="radio" name="q3" value="Are" class="text-indigo-600">
+                                <span>Are</span>
+                            </label>
+                        </div>
+                        <p id="q3-feedback" class="text-sm font-semibold mt-2 hidden"></p>
+                    </div>
+
+                    <!-- Q4 - Fill in the blank -->
+                    <div class="p-5 rounded-2xl bg-slate-50 border border-slate-200 hover:border-indigo-200 transition" id="q4-box">
+                        <label class="block font-bold text-slate-800 mb-2">
+                            4. Escribe la forma correcta en 3ra persona del verbo <strong>STUDY</strong>:
+                        </label>
+                        <input type="text" id="q4-input" placeholder="Escribe aquí..." class="w-full sm:w-1/2 p-3 bg-white border border-slate-300 rounded-xl focus:ring-2 focus:ring-indigo-500 focus:outline-none uppercase font-mono">
+                        <p id="q4-feedback" class="text-sm font-semibold mt-2 hidden"></p>
+                    </div>
+
+                    <!-- Q5 - Fill in the blank -->
+                    <div class="p-5 rounded-2xl bg-slate-50 border border-slate-200 hover:border-indigo-200 transition" id="q5-box">
+                        <label class="block font-bold text-slate-800 mb-2">
+                            5. Completa con la forma correcta de <strong>HAVE</strong>: "He ________ a blue bicycle."
+                        </label>
+                        <input type="text" id="q5-input" placeholder="Escribe aquí..." class="w-full sm:w-1/2 p-3 bg-white border border-slate-300 rounded-xl focus:ring-2 focus:ring-indigo-500 focus:outline-none uppercase font-mono">
+                        <p id="q5-feedback" class="text-sm font-semibold mt-2 hidden"></p>
+                    </div>
+
+                    <!-- Buttons -->
+                    <div class="flex flex-wrap gap-4 pt-4">
+                        <button type="submit" class="bg-indigo-600 hover:bg-indigo-700 text-white font-bold px-8 py-3 rounded-xl shadow-lg hover:shadow-indigo-500/30 transition flex items-center gap-2">
+                            <i class="fa-solid fa-paper-plane"></i> Corregir Ejercicios
+                        </button>
+                        <button type="button" onclick="resetQuiz()" class="bg-slate-200 hover:bg-slate-300 text-slate-700 font-bold px-6 py-3 rounded-xl transition flex items-center gap-2">
+                            <i class="fa-solid fa-rotate-right"></i> Reiniciar
+                        </button>
+                    </div>
+                </form>
+            </div>
+        </section>
+
+        <!-- ================= SECTION 3: DYNAMIC GAME ================= -->
+        <section id="sec-game" class="tab-content hidden space-y-8">
+            <div class="bg-gradient-to-br from-indigo-900 to-slate-900 rounded-3xl p-6 sm:p-8 text-white shadow-2xl relative overflow-hidden border border-indigo-700">
+                <div class="flex flex-col sm:flex-row justify-between items-start sm:items-center gap-4 mb-6">
+                    <div>
+                        <span class="bg-amber-400 text-slate-900 font-extrabold text-xs uppercase px-3 py-1 rounded-full">Juego Interactivo</span>
+                        <h2 class="text-2xl sm:text-3xl font-extrabold mt-2 text-white">Desafío: Corrector de 3ra Persona</h2>
+                        <p class="text-indigo-200 text-sm">Selecciona la forma verbal correcta antes de que se agote el tiempo.</p>
+                    </div>
+                    <div class="flex gap-4">
+                        <div class="bg-white/10 backdrop-blur-md px-4 py-2 rounded-xl text-center border border-white/10">
+                            <p class="text-[10px] text-indigo-300 font-bold uppercase">Racha</p>
+                            <p id="game-streak" class="text-2xl font-black text-amber-400">0</p>
+                        </div>
+                        <div class="bg-white/10 backdrop-blur-md px-4 py-2 rounded-xl text-center border border-white/10">
+                            <p class="text-[10px] text-indigo-300 font-bold uppercase">Puntos</p>
+                            <p id="game-score" class="text-2xl font-black text-emerald-400">0</p>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- GAME CONTAINER -->
+                <div id="game-card" class="bg-white/10 backdrop-blur-md p-6 sm:p-10 rounded-2xl border border-white/20 text-center max-w-2xl mx-auto my-6">
+                    <p class="text-xs text-amber-300 font-bold uppercase tracking-widest mb-2" id="game-pronoun-tag">PRONOMBRE: SHE</p>
+                    <h3 class="text-3xl sm:text-5xl font-black mb-6 text-white tracking-wide" id="game-base-verb">STUDY</h3>
+                    <p class="text-sm text-indigo-200 mb-8">¿Cuál es la forma correcta en 3ra persona singular?</p>
+
+                    <div class="grid grid-cols-1 sm:grid-cols-3 gap-4" id="game-options">
+                        <!-- Options generated dynamically -->
+                    </div>
+                </div>
+
+                <!-- Feedback area -->
+                <div id="game-feedback" class="text-center h-8 font-bold text-lg"></div>
+
+                <div class="text-center mt-6">
+                    <button onclick="nextGameQuestion()" class="bg-amber-400 hover:bg-amber-500 text-slate-900 font-bold px-6 py-2.5 rounded-xl shadow-lg transition">
+                        Siguiente Verbo <i class="fa-solid fa-arrow-right ml-1"></i>
+                    </button>
+                </div>
+            </div>
+        </section>
+
+        <!-- ================= SECTION 4: VIDEO LESSONS ================= -->
+        <section id="sec-videos" class="tab-content hidden space-y-8">
+            <div>
+                <h2 class="text-2xl font-bold text-slate-800 mb-2 flex items-center gap-3">
+                    <i class="fa-solid fa-play-circle text-rose-600"></i> Lecciones Explicativas en Video
+                </h2>
+                <p class="text-slate-500 text-sm mb-6">Refuerza la explicación con estas lecciones visuales seleccionadas por el Prof. Anthony Altuve.</p>
+
+                <div class="grid grid-cols-1 md:grid-cols-2 gap-8">
+                    <!-- Video 1 -->
+                    <div class="bg-white rounded-2xl overflow-hidden shadow-lg border border-slate-200 flex flex-col justify-between">
+                        <div>
+                            <div class="relative pt-[56.25%] bg-black">
+                                <iframe class="absolute top-0 left-0 w-full h-full" src="https://www.youtube-nocookie.com/embed/m0kTGL6Fl_I" title="Present Simple Rules" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
+                            </div>
+                            <div class="p-5">
+                                <span class="bg-indigo-100 text-indigo-800 text-xs font-bold px-2.5 py-1 rounded-md uppercase">Gramática Clave</span>
+                                <h3 class="text-lg font-bold text-slate-800 mt-2">Present Simple: Reglas de la 3ra Persona</h3>
+                                <p class="text-slate-600 text-xs mt-2">
+                                    Explicación detallada de cuándo agregar -s, -es, o -ies con He, She, It.
+                                </p>
+                            </div>
+                        </div>
+                        <div class="px-5 pb-5 pt-2 border-t border-slate-100 bg-slate-50/50">
+                            <span class="text-xs text-slate-500 font-semibold flex items-center gap-1">
+                                <i class="fa-solid fa-check text-emerald-500"></i> Recomendado para estudio individual
+                            </span>
+                        </div>
+                    </div>
+
+                    <!-- Video 2 -->
+                    <div class="bg-white rounded-2xl overflow-hidden shadow-lg border border-slate-200 flex flex-col justify-between">
+                        <div>
+                            <div class="relative pt-[56.25%] bg-black">
+                                <iframe class="absolute top-0 left-0 w-full h-full" src="https://www.youtube-nocookie.com/embed/L9AWRJns540" title="Present Simple Negative and Questions" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
+                            </div>
+                            <div class="p-5">
+                                <span class="bg-rose-100 text-rose-800 text-xs font-bold px-2.5 py-1 rounded-md uppercase">Estructura</span>
+                                <h3 class="text-lg font-bold text-slate-800 mt-2">Uso de Do / Does y Don't / Doesn't</h3>
+                                <p class="text-slate-600 text-xs mt-2">
+                                    Aprende a formular preguntas y negaciones correctamente sin cometer errores comunes.
+                                </p>
+                            </div>
+                        </div>
+                        <div class="px-5 pb-5 pt-2 border-t border-slate-100 bg-slate-50/50">
+                            <span class="text-xs text-slate-500 font-semibold flex items-center gap-1">
+                                <i class="fa-solid fa-check text-emerald-500"></i> Incluye ejemplos conversacionales
+                            </span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+    </main>
+
+    <!-- FOOTER -->
+    <footer class="bg-slate-900 text-slate-400 py-8 border-t border-slate-800 mt-12">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 text-center sm:text-left flex flex-col sm:flex-row justify-between items-center gap-4">
+            <div>
+                <p class="text-white font-bold text-base">English Class - 2nd Year (Segundo Año)</p>
+                <p class="text-xs text-slate-400 mt-1">Diseñado para el aprendizaje interactivo de Educación Media / Secundaria.</p>
+            </div>
+            <div class="text-center sm:text-right">
+                <p class="text-xs text-slate-300 font-semibold">Profesor Anthony Altuve</p>
+                <p class="text-[11px] text-slate-500 mt-0.5">Área de Formación: Lengua Extranjera (Inglés)</p>
+            </div>
+        </div>
+    </footer>
+
+    <!-- JAVASCRIPT LOGIC -->
+    <script>
+        // TAB SWITCHING LOGIC
+        function switchTab(tabId) {
+            // Hide all tab content
+            const contents = document.querySelectorAll('.tab-content');
+            contents.forEach(content => content.classList.add('hidden'));
+
+            // Deactivate all buttons
+            const buttons = document.querySelectorAll('.tab-btn');
+            buttons.forEach(btn => {
+                btn.classList.remove('bg-white/10', 'font-bold');
+            });
+
+            // Show current tab content
+            const selectedContent = document.getElementById(`sec-${tabId}`);
+            if (selectedContent) {
+                selectedContent.classList.remove('hidden');
+            }
+
+            // Highlight current button
+            const selectedBtn = document.getElementById(`tab-${tabId}`);
+            if (selectedBtn) {
+                selectedBtn.classList.add('bg-white/10', 'font-bold');
+            }
+        }
+
+        // TEXT TO SPEECH (WEB SPEECH API)
+        function speak(text) {
+            if ('speechSynthesis' in window) {
+                window.speechSynthesis.cancel(); // Stop current speaking
+                const utterance = new SpeechSynthesisUtterance(text);
+                utterance.lang = 'en-US';
+                utterance.rate = 0.9; // Slightly slower for clear learning
+                window.speechSynthesis.speak(utterance);
+            } else {
+                alert('Tu navegador no soporta síntesis de voz.');
+            }
+        }
+
+        // QUIZ CHECKER LOGIC
+        function checkQuiz() {
+            let score = 0;
+
+            // Q1
+            const q1Val = document.querySelector('input[name="q1"]:checked')?.value;
+            const q1Box = document.getElementById('q1-box');
+            const q1Fb = document.getElementById('q1-feedback');
+            q1Fb.classList.remove('hidden');
+            if (q1Val === 'watches') {
+                score++;
+                q1Box.className = "p-5 rounded-2xl bg-emerald-50 border-2 border-emerald-400 transition";
+                q1Fb.className = "text-sm font-semibold mt-2 text-emerald-700";
+                q1Fb.innerHTML = '<i class="fa-solid fa-circle-check"></i> ¡Correcto! Verbos terminados en -ch llevan "-es".';
+            } else {
+                q1Box.className = "p-5 rounded-2xl bg-rose-50 border-2 border-rose-400 transition";
+                q1Fb.className = "text-sm font-semibold mt-2 text-rose-700";
+                q1Fb.innerHTML = '<i class="fa-solid fa-circle-xmark"></i> Incorrecto. Para "She" y el verbo "watch" la forma correcta es "watches".';
+            }
+
+            // Q2
+            const q2Val = document.querySelector('input[name="q2"]:checked')?.value;
+            const q2Box = document.getElementById('q2-box');
+            const q2Fb = document.getElementById('q2-feedback');
+            q2Fb.classList.remove('hidden');
+            if (q2Val === "doesn't play") {
+                score++;
+                q2Box.className = "p-5 rounded-2xl bg-emerald-50 border-2 border-emerald-400 transition";
+                q2Fb.className = "text-sm font-semibold mt-2 text-emerald-700";
+                q2Fb.innerHTML = '<i class="fa-solid fa-circle-check"></i> ¡Excelente! Usamos doesn\'t + verbo base (play sin -s).';
+            } else {
+                q2Box.className = "p-5 rounded-2xl bg-rose-50 border-2 border-rose-400 transition";
+                q2Fb.className = "text-sm font-semibold mt-2 text-rose-700";
+                q2Fb.innerHTML = '<i class="fa-solid fa-circle-xmark"></i> Incorrecto. "My brother" es 3ra persona (He), requiere "doesn\'t play".';
+            }
+
+            // Q3
+            const q3Val = document.querySelector('input[name="q3"]:checked')?.value;
+            const q3Box = document.getElementById('q3-box');
+            const q3Fb = document.getElementById('q3-feedback');
+            q3Fb.classList.remove('hidden');
+            if (q3Val === "Do") {
+                score++;
+                q3Box.className = "p-5 rounded-2xl bg-emerald-50 border-2 border-emerald-400 transition";
+                q3Fb.className = "text-sm font-semibold mt-2 text-emerald-700";
+                q3Fb.innerHTML = '<i class="fa-solid fa-circle-check"></i> ¡Correcto! Para "They" se usa el auxiliar "Do".';
+            } else {
+                q3Box.className = "p-5 rounded-2xl bg-rose-50 border-2 border-rose-400 transition";
+                q3Fb.className = "text-sm font-semibold mt-2 text-rose-700";
+                q3Fb.innerHTML = '<i class="fa-solid fa-circle-xmark"></i> Incorrecto. "They" requiere el auxiliar "Do".';
+            }
+
+            // Q4
+            const q4Input = document.getElementById('q4-input').value.trim().toLowerCase();
+            const q4Box = document.getElementById('q4-box');
+            const q4Fb = document.getElementById('q4-feedback');
+            q4Fb.classList.remove('hidden');
+            if (q4Input === 'studies') {
+                score++;
+                q4Box.className = "p-5 rounded-2xl bg-emerald-50 border-2 border-emerald-400 transition";
+                q4Fb.className = "text-sm font-semibold mt-2 text-emerald-700";
+                q4Fb.innerHTML = '<i class="fa-solid fa-circle-check"></i> ¡Muy bien! Consonante + Y cambia a "-ies" (studies).';
+            } else {
+                q4Box.className = "p-5 rounded-2xl bg-rose-50 border-2 border-rose-400 transition";
+                q4Fb.className = "text-sm font-semibold mt-2 text-rose-700";
+                q4Fb.innerHTML = '<i class="fa-solid fa-circle-xmark"></i> Incorrecto. La respuesta es "studies".';
+            }
+
+            // Q5
+            const q5Input = document.getElementById('q5-input').value.trim().toLowerCase();
+            const q5Box = document.getElementById('q5-box');
+            const q5Fb = document.getElementById('q5-feedback');
+            q5Fb.classList.remove('hidden');
+            if (q5Input === 'has') {
+                score++;
+                q5Box.className = "p-5 rounded-2xl bg-emerald-50 border-2 border-emerald-400 transition";
+                q5Fb.className = "text-sm font-semibold mt-2 text-emerald-700";
+                q5Fb.innerHTML = '<i class="fa-solid fa-circle-check"></i> ¡Perfecto! "Have" cambia irregularmente a "has".';
+            } else {
+                q5Box.className = "p-5 rounded-2xl bg-rose-50 border-2 border-rose-400 transition";
+                q5Fb.className = "text-sm font-semibold mt-2 text-rose-700";
+                q5Fb.innerHTML = '<i class="fa-solid fa-circle-xmark"></i> Incorrecto. Para "He", el verbo tener es "has".';
+            }
+
+            // Update Total Score
+            document.getElementById('quiz-score').innerText = `${score} / 5`;
+        }
+
+        function resetQuiz() {
+            document.getElementById('quiz-form').reset();
+            document.getElementById('quiz-score').innerText = '0 / 5';
+            
+            for (let i = 1; i <= 5; i++) {
+                const box = document.getElementById(`q${i}-box`);
+                const fb = document.getElementById(`q${i}-feedback`);
+                box.className = "p-5 rounded-2xl bg-slate-50 border border-slate-200 hover:border-indigo-200 transition";
+                fb.classList.add('hidden');
+            }
+        }
+
+        // DYNAMIC GAME LOGIC
+        const gameData = [
+            { pronoun: "HE", verb: "WORK", correct: "works", options: ["works", "workes", "workies"] },
+            { pronoun: "SHE", verb: "GO", correct: "goes", options: ["gos", "goes", "goies"] },
+            { pronoun: "IT", verb: "FLY", correct: "flies", options: ["flys", "flies", "flyes"] },
+            { pronoun: "HE", verb: "WASH", correct: "washes", options: ["washes", "washs", "washies"] },
+            { pronoun: "SHE", verb: "HAVE", correct: "has", options: ["haves", "has", "havs"] },
+            { pronoun: "MY CAT", verb: "SLEEP", correct: "sleeps", options: ["sleeps", "sleepes", "sleepies"] },
+            { pronoun: "THE TEACHER", verb: "TEACH", correct: "teaches", options: ["teachs", "teaches", "teachies"] },
+            { pronoun: "HE", verb: "PLAY", correct: "plays", options: ["plaies", "plays", "playes"] }
+        ];
+
+        let currentGameIndex = 0;
+        let streak = 0;
+        let score = 0;
+
+        function loadGameQuestion() {
+            const current = gameData[currentGameIndex];
+            document.getElementById('game-pronoun-tag').innerText = `PRONOMBRE / SUJETO: ${current.pronoun}`;
+            document.getElementById('game-base-verb').innerText = current.verb;
+            
+            const optionsContainer = document.getElementById('game-options');
+            optionsContainer.innerHTML = '';
+
+            // Shuffle options
+            const shuffledOptions = [...current.options].sort(() => Math.random() - 0.5);
+
+            shuffledOptions.forEach(opt => {
+                const btn = document.createElement('button');
+                btn.className = 'w-full py-4 px-6 bg-white/10 hover:bg-amber-400 hover:text-slate-900 border border-white/20 rounded-xl font-bold text-lg transition duration-200 transform hover:-translate-y-1';
+                btn.innerText = opt;
+                btn.onclick = () => answerGame(opt, current.correct, btn);
+                optionsContainer.appendChild(btn);
+            });
+
+            document.getElementById('game-feedback').innerText = '';
+        }
+
+        function answerGame(selected, correct, element) {
+            const feedbackEl = document.getElementById('game-feedback');
+            
+            // Disable all option buttons temporarily
+            const btns = document.querySelectorAll('#game-options button');
+            btns.forEach(b => b.disabled = true);
+
+            if (selected === correct) {
+                streak++;
+                score += 10;
+                element.className = 'w-full py-4 px-6 bg-emerald-500 text-white font-bold text-lg rounded-xl shadow-lg';
+                feedbackEl.innerHTML = `<span class="text-emerald-400"><i class="fa-solid fa-circle-check"></i> ¡Excelente! "${selected}" es correcto.</span>`;
+                speak(selected);
+            } else {
+                streak = 0;
+                element.className = 'w-full py-4 px-6 bg-rose-500 text-white font-bold text-lg rounded-xl shadow-lg';
+                feedbackEl.innerHTML = `<span class="text-rose-400"><i class="fa-solid fa-circle-xmark"></i> ¡Ups! La forma correcta era "${correct}".</span>`;
+            }
+
+            document.getElementById('game-streak').innerText = streak;
+            document.getElementById('game-score').innerText = score;
+        }
+
+        function nextGameQuestion() {
+            currentGameIndex = (currentGameIndex + 1) % gameData.length;
+            loadGameQuestion();
+        }
+
+        // Initialize game on page load
+        window.onload = function() {
+            loadGameQuestion();
+        };
+    </script>
+</body>
+</html>
